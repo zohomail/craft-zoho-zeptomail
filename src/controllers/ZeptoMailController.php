@@ -85,8 +85,9 @@ class ZeptoMailController extends Controller
         $emailDetails = ['email_address' =>$emailDetail];
                 $sendmailaddress[] = $emailDetails;
         $payload = [
-            'htmlbody' => 'Test Email',
-            'subject'  => 'Test Email',
+            'subject' => 'ZeptoMail plugin for Craft CMS - Test Email',
+            'htmlbody'  => '<html><body><p>Hello,</p><br><br><p>We\'re glad you\'re using our ZeptoMail plugin. This is a test email to verify your configuration details. 
+    Thank you for choosing ZeptoMail for your transactional email needs.<p><br><br>Team ZeptoMail</body></html>',
             'from'     => $fromEmailDetail,
             'to'       => array($emailDetails)
         ];
