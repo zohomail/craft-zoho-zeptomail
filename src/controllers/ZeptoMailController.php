@@ -1,0 +1,104 @@
+<?php
+
+namespace zohomail\craftzohozeptomail\controllers;
+
+use Craft;
+use craft\web\Controller;
+use  zohomail\craftzohozeptomail\Helper\ZeptoMailApi;
+use Symfony\Component\Mailer\Exception\HttpTransportException;
+
+class ZeptoMailController extends Controller
+{
+    
+    public function actionSaveMailtoken()
+    {
+        $this->requirePostRequest();
+        $this->requireAdmin();
+
+        $domain = Craft::$app->getRequest()->getBodyParam('domain');
+        $fromEmail = Craft::$app->getRequest()->getBodyParam('from_address');
+        $fromName = Craft::$app->getRequest()->getBodyParam('from_name');
+        $mailtoken = Craft::$app->getRequest()->getBodyParam('mailtoken');
+
+
+
+        $zeptoMailApi = new ZeptoMailApi($domain,$mailtoken);
+        $json = $this->getTestPayload($fromEmail,$fromName);
+        
+        try {
+            $zeptoMailApi->sendZeptoMail($json);
+            $this->saveZeptoMailSettings($domain,$fromName,$fromEmail,$mailtoken);
+            return $this->asJson(['result' => 'success', 'message' => 'Action completed']);
+        }
+        catch(HttpTransportException $httpTransportException){
+            Craft::error('HttpTransportException occurred while sending email: ' . $httpTransportException->getMessage(), __METHOD__);
+            return $this->asJson(['result' => 'failure', 'message' => $httpTransportException->getMessage(),'json' => $json]);
+        }
+       
+    }
+    
+    public function actionTestMail()
+    {
+        $this->requirePostRequest();
+        $this->requireAdmin();
+        $zeptoSettings = Craft::$app->getProjectConfig()->get("zeptomail.settings");
+
+        if(!isset($zeptoSettings)) {
+            return $this->asJson(['result' => 'failure', 'message' => 'Please configure mail settings']);
+        }
+        
+        $fromEmail =  $zeptoSettings['fromEmail'];
+        $fromName =  $zeptoSettings['fromName'];
+        $mailtoken = $zeptoSettings['apiKey'];
+        $domain = $zeptoSettings['domain'];
+
+
+
+        $zeptoMailApi = new ZeptoMailApi($domain,$mailtoken);
+        $json = $this->getTestPayload($fromEmail,$fromName);
+        
+        try {
+            $zeptoMailApi->sendZeptoMail($json);
+
+            return $this->asJson(['result' => 'success', 'message' => 'Action completed']);
+        }
+        catch(HttpTransportException $httpTransportException){
+            Craft::error('HttpTransportException occurred while sending email: ' . $httpTransportException->getMessage(), __METHOD__);
+            return $this->asJson(['result' => 'failure', 'message' => $httpTransportException->getMessage(),'json' => $json]);
+        }
+       
+    }
+    public function actionIndex()
+    {
+        $this->requireAdmin();
+        $this->renderTemplate('zoho-zepto-mail/index');
+    }
+
+    private function getTestPayload($fromAddress,$fromName) {
+        $fromEmailDetail = ['address' => $fromAddress];
+        $emailDetail = [
+            'address' => $fromAddress
+            ];
+        if ('' !== $fromName) {
+            $fromEmailDetail['name'] = $fromName;
+        }
+        $emailDetails = ['email_address' =>$emailDetail];
+                $sendmailaddress[] = $emailDetails;
+        $payload = [
+            'htmlbody' => 'Test Email',
+            'subject'  => 'Test Email',
+            'from'     => $fromEmailDetail,
+            'to'       => array($emailDetails)
+        ];
+        return $payload;
+    }
+    private function saveZeptoMailSettings($domain,$fromName,$fromEmail,$apiKey) {
+        Craft::$app->getProjectConfig()->set("zeptomail.settings", [
+            'domain' => $domain,
+            'fromName' => $fromName,
+            'fromEmail' => $fromEmail,
+            'apiKey' => $apiKey
+        ]);
+    }
+}
+

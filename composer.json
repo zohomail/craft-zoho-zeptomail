@@ -1,0 +1,40 @@
+{
+    "name": "zoho-mail/craft-zoho-zepto-mail",
+    "description": "Thirdparty plugin for Craft CMS",
+    "type": "craft-plugin",
+    "license": "mit",
+    "support": {
+        "email": "support@zeptomail.com",
+        "issues": "https://github.com/zohomail/craft-zeptomail/issues?state=open",
+        "source": "https://github.com/zohomail/craft-zeptomail",
+        "docs": "https://github.com/zohomail/craft-zeptomail",
+        "rss": "https://github.com/zohomail/craft-zeptomail/releases.atom"
+    },
+    "require": {
+        "php": ">=8.0.2",
+        "craftcms/cms": "^4.14.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "zohomail\\craftzohozeptomail\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "zoho-zepto-mail",
+        "name": "Zoho ZeptoMail",
+        "developer": "Zoho Mail",
+        "documentationUrl": "https://github.com/zohomail/craft-zeptomail",
+        "class": "zohomail\\craftzohozeptomail\\ZeptoMail"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.2"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    }
+}
+
