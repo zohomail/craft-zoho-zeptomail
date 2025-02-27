@@ -55,7 +55,7 @@
 				</div>
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">Send Mail Token</label>
-                    <input type="password"  name="zepto_mail_token" class="zepto_form--input" id="zepto_mail_token" required="" value="{{ data.mailtoken }}"> 
+                    <input type="password"  name="zepto_mail_token" class="zepto_form--input" id="zepto_mail_token" required="" value="{{ data.mailtoken|base64_decode  }}"> 
                     <i class="form__row-info">Send Mail token of the relevant Mail Agent generated in your ZeptoMail account.</i> 
                  </div>
 				<div class="zepto_form__row">

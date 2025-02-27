@@ -1,5 +1,5 @@
 <?php
-namespace zohomail\craftzohozeptomail\Helper;
+namespace zohomail\zohozeptomail\Helper;
 
 use Craft;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;

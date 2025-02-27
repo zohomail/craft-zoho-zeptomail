@@ -1,7 +1,7 @@
 <?php
 
 
- namespace zohomail\craftzohozeptomail\mail;
+ namespace zohomail\zohozeptomail\mail;
 
 
 use Craft;
@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use zohomail\craftzohozeptomail\Helper\ZeptoMailApi;
+use zohomail\zohozeptomail\Helper\ZeptoMailApi;
 
 class ZeptoMailTransport extends AbstractApiTransport
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace zohomail\craftzohozeptomail\mail;
+namespace zohomail\zohozeptomail\mail;
 
 use AsyncAws\Ses\SesClient;
 use Craft;
@@ -9,7 +9,7 @@ use craft\behaviors\EnvAttributeParserBehavior;
 use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
-use zohomail\craftzohozeptomail\Helper\ZeptoMailApi;
+use zohomail\zohozeptomail\Helper\ZeptoMailApi;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace zohomail\craftzohozeptomail;
+namespace zohomail\zohozeptomail;
 
 use Craft;
 use craft\base\Plugin;
@@ -8,7 +8,7 @@ use craft\base\Model;
 use craft\services\Plugins;
 use craft\events\RegisterComponentTypesEvent;
 use craft\helpers\MailerHelper;
-use zohomail\craftzohozeptomail\mail\ZeptoMailAdapter;
+use zohomail\zohozeptomail\mail\ZeptoMailAdapter;
 use yii\base\Event;
 use craft\services\Email;
 use craft\mail\MailTransportType;
@@ -16,9 +16,9 @@ use craft\events\ModelEvent;
 use craft\web\UrlManager;
 use craft\helpers\UrlHelper;
 use craft\events\RegisterUrlRulesEvent;
-use zohomail\craftzohozeptomail\controllers\ZeptoMailController;
-use zohomail\craftzohozeptomail\models\Settings;
-use zohomail\craftzohozeptomail\assets\ZeptoMailAssetBundle;
+use zohomail\zohozeptomail\controllers\ZeptoMailController;
+use zohomail\zohozeptomail\models\Settings;
+use zohomail\zohozeptomail\assets\ZeptoMailAssetBundle;
 use craft\web\Controller;
 use yii\web\Response;
 /**
@@ -33,6 +33,9 @@ use yii\web\Response;
 class ZeptoMail extends Plugin
 {
     public string $schemaVersion = '1.0.0';
+    /**
+     * @inheritdoc
+     */
     public bool $hasCpSettings = true;
 
     public const CMS_ZEPTO_HANDLER = 'zoho-zepto-mail';
@@ -47,17 +50,20 @@ class ZeptoMail extends Plugin
         parent::init();
         self::$plugin = $this;
 
+
         $request = Craft::$app->getRequest();
         $this->_registerCpRoutes();
 
         Craft::$app->view->registerAssetBundle(ZeptoMailAssetBundle::class);
 
-        Event::on(MailerHelper::class, MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,
+        $eventType = (MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS!==null)?MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS:MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES;
+
+        Event::on(MailerHelper::class, $eventType,
             function (RegisterComponentTypesEvent $event) {
                 $event->types[] = ZeptoMailAdapter::class;  
             }
         );
-       
+      
       
     }   
 

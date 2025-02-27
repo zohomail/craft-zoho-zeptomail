@@ -1,6 +1,6 @@
 <?php
 
-namespace zohomail\craftzohozeptomail\assets;
+namespace zohomail\zohozeptomail\assets;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;  // This includes the Craft CP assets, if needed

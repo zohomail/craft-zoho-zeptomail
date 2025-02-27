@@ -1,6 +1,6 @@
 # Zoho ZeptoMail
 
-Thirdparty plugin for Craft CMS
+Thirdparty mail plugin for Craft CMS
 
 ## Requirements
 

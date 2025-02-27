@@ -1,10 +1,10 @@
 <?php
 
-namespace zohomail\craftzohozeptomail\controllers;
+namespace zohomail\zohozeptomail\controllers;
 
 use Craft;
 use craft\web\Controller;
-use  zohomail\craftzohozeptomail\Helper\ZeptoMailApi;
+use  zohomail\zohozeptomail\Helper\ZeptoMailApi;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 
 class ZeptoMailController extends Controller
@@ -27,7 +27,7 @@ class ZeptoMailController extends Controller
         
         try {
             $zeptoMailApi->sendZeptoMail($json);
-            $this->saveZeptoMailSettings($domain,$fromName,$fromEmail,$mailtoken);
+            $this->saveZeptoMailSettings($domain,$fromName,$fromEmail,base64_encode($mailtoken));
             return $this->asJson(['result' => 'success', 'message' => 'Action completed']);
         }
         catch(HttpTransportException $httpTransportException){
@@ -49,7 +49,7 @@ class ZeptoMailController extends Controller
         
         $fromEmail =  $zeptoSettings['fromEmail'];
         $fromName =  $zeptoSettings['fromName'];
-        $mailtoken = $zeptoSettings['apiKey'];
+        $mailtoken = base64_decode($zeptoSettings['apiKey']);
         $domain = $zeptoSettings['domain'];
 
 
