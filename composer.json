@@ -13,10 +13,10 @@
     ],
     "support": {
         "email": "support@zeptomail.com",
-        "issues": "https://github.com/zohomail/craft-zeptomail/issues?state=open",
-        "source": "https://github.com/zohomail/craft-zeptomail",
-        "docs": "https://github.com/zohomail/craft-zeptomail",
-        "rss": "https://github.com/zohomail/craft-zeptomail/releases.atom"
+        "issues": "https://github.com/zohomail/craft-zoho-zeptomail/issues?state=open",
+        "source": "https://github.com/zohomail/craft-zoho-zeptomail",
+        "docs": "https://github.com/zohomail/craft-zoho-zeptomail",
+        "rss": "https://github.com/zohomail/craft-zoho-zeptomail/releases.atom"
     },
     "require": {
         "php": ">=8.0.2",
@@ -31,7 +31,7 @@
         "handle": "zoho-zepto-mail",
         "name": "Zoho ZeptoMail",
         "developer": "Zoho Mail",
-        "documentationUrl": "https://github.com/zohomail/craft-zeptomail",
+        "documentationUrl": "https://github.com/zohomail/craft-zoho-zeptomail",
         "class": "zohomail\\zohozeptomail\\ZeptoMail"
     },
     "config": {
