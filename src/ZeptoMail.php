@@ -8,6 +8,7 @@ use craft\base\Model;
 use craft\services\Plugins;
 use craft\events\RegisterComponentTypesEvent;
 use craft\helpers\MailerHelper;
+use zohomail\zohozeptomail\mail\ZeptoMailAdapter;
 use yii\base\Event;
 use craft\services\Email;
 use craft\mail\MailTransportType;
@@ -17,7 +18,7 @@ use craft\helpers\UrlHelper;
 use craft\events\RegisterUrlRulesEvent;
 use zohomail\zohozeptomail\controllers\ZeptoMailController;
 use zohomail\zohozeptomail\models\Settings;
-use zohomail\zohozeptomail\mail\ZeptoMailAdapter;
+use zohomail\zohozeptomail\assets\ZeptoMailAssetBundle;
 use craft\web\Controller;
 use yii\web\Response;
 /**
@@ -48,12 +49,12 @@ class ZeptoMail extends Plugin
     {
         parent::init();
         self::$plugin = $this;
-
+        \Yii::setAlias('@zohomail', __DIR__);
+        
 
         $request = Craft::$app->getRequest();
         $this->_registerCpRoutes();
 
-        
         $eventType = (MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS!==null)?MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS:MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES;
 
         Event::on(MailerHelper::class, $eventType,

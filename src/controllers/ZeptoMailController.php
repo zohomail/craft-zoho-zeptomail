@@ -4,8 +4,8 @@ namespace zohomail\zohozeptomail\controllers;
 
 use Craft;
 use craft\web\Controller;
+use  zohomail\zohozeptomail\Helper\ZeptoMailApi;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
-use zohomail\zohozeptomail\Helper\ZeptoMailApi;
 use zohomail\zohozeptomail\assets\ZeptoMailAssetBundle;
 
 class ZeptoMailController extends Controller
@@ -72,9 +72,24 @@ class ZeptoMailController extends Controller
     public function actionIndex()
     {
         $this->requireAdmin();
+        $zeptoSettings = Craft::$app->getProjectConfig()->get("zeptomail.settings");
+        $data = array();
+        if(!isset($zeptoSettings)) {
+            $data['fromEmail'] = '';
+            $data['fromName'] = '';
+            $data['apiKey'] = '';
+            $data['domain'] = 'zoho.com';
+
+        } 
+        else {
+            $data['fromEmail'] = $zeptoSettings['fromEmail'];
+            $data['fromName'] = $zeptoSettings['fromName'];
+            $data['apiKey'] = $zeptoSettings['apiKey'];
+            $data['domain'] = base64_decode($zeptoSettings['domain']);
+        }
         Craft::$app->view->registerAssetBundle(ZeptoMailAssetBundle::class);
 
-        $this->renderTemplate('zoho-zepto-mail/index');
+        $this->renderTemplate('zoho-zepto-mail/index',$data);
     }
 
     private function getTestPayload($fromAddress,$fromName) {
