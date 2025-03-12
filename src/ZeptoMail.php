@@ -54,8 +54,9 @@ class ZeptoMail extends Plugin
 
         $request = Craft::$app->getRequest();
         $this->_registerCpRoutes();
-
-        $eventType = (MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS!==null)?MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS:MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES;
+        $eventType =defined(sprintf('%s::EVENT_REGISTER_MAILER_TRANSPORT_TYPES', MailerHelper::class))
+        ? MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES // Craft 4
+        : MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS; // Craft 5+
 
         Event::on(MailerHelper::class, $eventType,
             function (RegisterComponentTypesEvent $event) {
@@ -103,5 +104,12 @@ class ZeptoMail extends Plugin
         return Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('zeptomail'));
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function uninstall():void {
+        
+        Craft::$app->getProjectConfig()->remove("zeptomail.settings");
+    }
 
 }
