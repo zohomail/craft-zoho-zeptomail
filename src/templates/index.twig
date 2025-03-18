@@ -66,7 +66,7 @@
 				<div >
 						<br /><button type="button"  id="zepto_config_btn" class="zepto_btn  {%if is_configured != false %} zm-dispNone {%endif%}">Save 
 							</button>
-						<button class="zepto_btn" type="button" id="zepto_test_btn" name="test" class="zepto_btn  {%if is_configured %} zm-dispNone {%endif%}">Send test email  
+						<button type="button" id="zepto_test_btn" name="test" class="zepto_btn {% if is_configured == false %}  zm-dispNone {%endif%}">Send test email  
 							</button>
 							
 				</div>
