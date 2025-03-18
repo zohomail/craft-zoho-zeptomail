@@ -164,6 +164,19 @@
     border: 1px solid #f5c6cb;
     padding:10px;
   }
+.zmailbtn--flat {
+  background-color: transparent;
+  color: #264ded;
+}
+.zmailbtn--flat:hover {
+  background-color: #eaf1ff;
+}
+.zmailbtn--sm {
+  padding: 2px 3px;
+}
+.zm-dispNone {
+   display:none;
+}
   @keyframes spin {
       from {
           transform:rotate(0deg);

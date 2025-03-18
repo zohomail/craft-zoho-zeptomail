@@ -24,6 +24,13 @@
               $self.find(".loading-spinner").remove();
 							if(data.result === 'success'){
                 addZeptoSuccessMessage('Plugin configured successfully');
+                $("#zepto_mail_token").attr("disabled","disabled");
+                $("#zepto_from_name").attr("disabled","disabled");
+                $("#zepto_from_address").attr("disabled","disabled");
+                $("[name=zepto_domain]").attr("disabled","disabled");
+                $("#zepto_test_btn").removeClass("zm-dispNone");
+                $("#zepto_config_btn").addClass("zm-dispNone");
+                $('[purpose=zmail_modify_config]').removeClass("zm-dispNone");
               } else {
                 addZeptoErrorMessage(data.message);
               }
@@ -58,5 +65,14 @@
           }
         });
 
+  });
+  $("[purpose=reconfigure]").on("click",function(){
+      $("#zepto_mail_token").removeAttr("disabled");
+      $("#zepto_from_name").removeAttr("disabled");
+      $("#zepto_from_address").removeAttr("disabled");
+      $("[name=zepto_domain]").removeAttr("disabled");
+      $("#zepto_test_btn").addClass("zm-dispNone");
+      $("#zepto_config_btn").removeClass("zm-dispNone");
+      $('[purpose=zmail_modify_config]').addClass("zm-dispNone");
   });
   

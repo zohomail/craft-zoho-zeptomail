@@ -38,7 +38,7 @@
             <div class="zepto_form">
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">Where is your account hosted?</label>
-                    <select class="zepto_form--input zepto_form--input--select" name="zepto_domain">
+                    <select class="zepto_form--input zepto_form--input--select" name="zepto_domain" {%if is_configured %} disabled {%endif%}>
                         <option value="zoho.com" {% if domain == 'zoho.com' %} selected="selected" {% endif %}>zeptomail.zoho.com</option>
                         <option value="zoho.eu" {% if domain == 'zoho.eu' %} selected="selected" {% endif %}>zeptomail.zoho.eu</option>
                         <option value="zoho.in" {% if domain == 'zoho.in' %} selected="selected" {% endif %}>zeptomail.zoho.in</option>
@@ -51,25 +51,29 @@
 				</div>
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">Send Mail Token</label>
-                    <input type="password"  name="zepto_mail_token" class="zepto_form--input" id="zepto_mail_token" required="" value="{{ apiKey }}"> 
+                    <input type="password"  name="zepto_mail_token" class="zepto_form--input" id="zepto_mail_token" required="" value="{{ apiKey }}"  {%if is_configured %} disabled {%endif%}> 
                     <i class="form__row-info">Send Mail token of the relevant Mail Agent generated in your ZeptoMail account.</i> 
                  </div>
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">From Name</label>
-                     <input type="text"  class="zepto_form--input" id="zepto_from_name" required="" value="{{ fromName }}">
+                     <input type="text"  class="zepto_form--input" id="zepto_from_name" required="" value="{{ fromName }}"  {%if is_configured %} disabled {%endif%}>
 				</div>
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">From email address</label>
-                     <input type="text" class="zepto_form--input" id="zepto_from_address" required="" value="{{ fromEmail }}"> 
+                     <input type="text" class="zepto_form--input" id="zepto_from_address" required="" value="{{ fromEmail }}"  {%if is_configured %} disabled {%endif%}> 
 				</div>
 				
 				<div >
-						<br /><button class="zepto_btn" type="button"  id="zepto_config_btn" class="button button-primary button-large">Save 
-							</button> &nbsp;
-						<button class="zepto_btn" type="button" id="zepto_test_btn" name="test" class="button button-primary button-large">Test  
+						<br /><button type="button"  id="zepto_config_btn" class="zepto_btn  {%if is_configured != false %} zm-dispNone {%endif%}">Save 
+							</button>
+						<button class="zepto_btn" type="button" id="zepto_test_btn" name="test" class="zepto_btn  {%if is_configured %} zm-dispNone {%endif%}">Test  
 							</button>
 							
 				</div>
+				<span purpose="zmail_modify_config" class="zmailsetup-step-desc  {% if is_configured == false %} zm-dispNone {% endif %}">
+                To modify email configuration,                 
+                <input type="button" class="zmailbtn--flat zmailbtn--sm" purpose="reconfigure" value="click here.">
+            </span>
 			
 		
 		</form>

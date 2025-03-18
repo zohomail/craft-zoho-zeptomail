@@ -79,13 +79,15 @@ class ZeptoMailController extends Controller
             $data['fromName'] = '';
             $data['apiKey'] = '';
             $data['domain'] = 'zoho.com';
+            $data['is_configured'] = false;
 
         } 
         else {
             $data['fromEmail'] = $zeptoSettings['fromEmail'];
             $data['fromName'] = $zeptoSettings['fromName'];
-            $data['apiKey'] = $zeptoSettings['apiKey'];
-            $data['domain'] = base64_decode($zeptoSettings['domain']);
+            $data['apiKey'] = base64_decode($zeptoSettings['apiKey']);
+            $data['domain'] = $zeptoSettings['domain'];
+            $data['is_configured'] = true;
         }
         Craft::$app->view->registerAssetBundle(ZeptoMailAssetBundle::class);
 
