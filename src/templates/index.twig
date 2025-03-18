@@ -50,23 +50,23 @@
                     </select> <br><i class="form__row-info"> The region where your ZeptoMail account is hosted. This is the URL displayed on login to your account.</i> </div>
 				</div>
 				<div class="zepto_form__row">
-                    <label class="zepto_form--label">Send Mail Token</label>
+                    <label class="zepto_form--label">Send mail token</label>
                     <input type="password"  name="zepto_mail_token" class="zepto_form--input" id="zepto_mail_token" required="" value="{{ apiKey }}"  {%if is_configured %} disabled {%endif%}> 
-                    <i class="form__row-info">Send Mail token of the relevant Mail Agent generated in your ZeptoMail account.</i> 
+                    <i class="form__row-info">Send mail token of the relevant Mail Agent generated in your ZeptoMail account.</i> 
                  </div>
 				<div class="zepto_form__row">
-                    <label class="zepto_form--label">From Name</label>
-                     <input type="text"  class="zepto_form--input" id="zepto_from_name" required="" value="{{ fromName }}"  {%if is_configured %} disabled {%endif%}>
+                    <label class="zepto_form--label">From name</label>
+                     <input type="text"  class="zepto_form--input" id="zepto_from_name" required="" value="{{ fromName }}"  {%if is_configured %} disabled {%endif%} placeholder="Enter from name">
 				</div>
 				<div class="zepto_form__row">
                     <label class="zepto_form--label">From email address</label>
-                     <input type="text" class="zepto_form--input" id="zepto_from_address" required="" value="{{ fromEmail }}"  {%if is_configured %} disabled {%endif%}> 
+                     <input type="text" class="zepto_form--input" id="zepto_from_address" required="" value="{{ fromEmail }}"  {%if is_configured %} disabled {%endif%} placeholder="Enter from address"> 
 				</div>
 				
 				<div >
 						<br /><button type="button"  id="zepto_config_btn" class="zepto_btn  {%if is_configured != false %} zm-dispNone {%endif%}">Save 
 							</button>
-						<button class="zepto_btn" type="button" id="zepto_test_btn" name="test" class="zepto_btn  {%if is_configured %} zm-dispNone {%endif%}">Test  
+						<button class="zepto_btn" type="button" id="zepto_test_btn" name="test" class="zepto_btn  {%if is_configured %} zm-dispNone {%endif%}">Send test email  
 							</button>
 							
 				</div>

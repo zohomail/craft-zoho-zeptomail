@@ -62,7 +62,7 @@ class ZeptoMailTransport extends AbstractApiTransport
             throw new HttpTransportException('Configure ZeptoMail settings before proceed');
         }
         $domain = $zeptoSettings['domain'];
-        $apiKey = $zeptoSettings['apiKey'];
+        $apiKey = base64_decode($zeptoSettings['apiKey']);
         $fromEmail = $zeptoSettings['fromEmail'];
         $zeptoMailApi = new ZeptoMailApi($domain,$apiKey);
         $mail_data = $this->getPayload($email, $envelope,$fromEmail);
