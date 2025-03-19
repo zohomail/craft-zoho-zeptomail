@@ -123,7 +123,7 @@ class ZeptoMailTransport extends AbstractApiTransport
             $filename = $headers->getHeaderParameter('Content-Disposition', 'filename');
 
             $att = [
-                'content' => base64_encode($attachment->bodyToString()),
+                'content' => base64_encode($attachment->getBody()),
                 'name' => $filename,
                 'mime_type' => $headers->get('Content-Type')->getBody()
               ];
