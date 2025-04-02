@@ -32,7 +32,7 @@ use yii\web\Response;
  */
 class ZeptoMail extends Plugin
 {
-    public string $schemaVersion = '1.0.0';
+    public string $schemaVersion = '1.0.1';
     /**
      * @inheritdoc
      */
@@ -49,7 +49,6 @@ class ZeptoMail extends Plugin
     {
         parent::init();
         self::$plugin = $this;
-        \Yii::setAlias('@zohomail', __DIR__);
         
 
         $request = Craft::$app->getRequest();

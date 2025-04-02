@@ -2,7 +2,7 @@
     $("#zepto_config_btn").on("click",function(){
         $self = $(this);
         $.ajax({
-            url: Craft.getUrl('admin/zeptomail/saveauthtoken'),
+            url: Craft.getUrl(Craft.cpTrigger+'/zeptomail/saveauthtoken'),
             type: 'POST',
             dataType: 'json',
             data: {
@@ -41,7 +41,7 @@
     $("#zepto_test_btn").on("click",function(){
       $self = $(this);
       $.ajax({
-          url: Craft.getUrl('admin/zeptomail/testmail'),
+          url: Craft.getUrl(Craft.cpTrigger+'/zeptomail/testmail'),
           type: 'POST',
           dataType: 'json',
           data: {
