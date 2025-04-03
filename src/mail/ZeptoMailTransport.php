@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use zohomail\zohozeptomail\Helper\ZeptoMailApi;
+use zohomail\zohozeptomail\helper\ZeptoMailApi;
 
 class ZeptoMailTransport extends AbstractApiTransport
 {

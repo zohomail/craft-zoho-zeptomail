@@ -4,7 +4,7 @@ namespace zohomail\zohozeptomail\controllers;
 
 use Craft;
 use craft\web\Controller;
-use  zohomail\zohozeptomail\Helper\ZeptoMailApi;
+use  zohomail\zohozeptomail\helper\ZeptoMailApi;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 use zohomail\zohozeptomail\assets\ZeptoMailAssetBundle;
 

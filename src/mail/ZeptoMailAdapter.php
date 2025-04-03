@@ -9,7 +9,7 @@ use craft\behaviors\EnvAttributeParserBehavior;
 use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
-use zohomail\zohozeptomail\Helper\ZeptoMailApi;
+use zohomail\zohozeptomail\helper\ZeptoMailApi;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 
 /**
