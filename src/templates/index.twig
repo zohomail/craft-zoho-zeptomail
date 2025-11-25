@@ -1,6 +1,11 @@
+{% set readOnly = not craft.app.config.general.allowAdminChanges %}
 {% extends "_layouts/cp" %}
 
 {% set title = "Zoho ZeptoMail Settings"|t('zoho-zepto-mail') %}
+
+{% if readOnly %}
+    {% set contentNotice = readOnlyNotice() %}
+{% endif %}
 
 
 {% block content %}
@@ -62,7 +67,8 @@
                     <label class="zepto_form--label">From email address</label>
                      <input type="text" class="zepto_form--input" id="zepto_from_address" required="" value="{{ fromEmail }}"  {%if is_configured %} disabled {%endif%} placeholder="Enter from address"> 
 				</div>
-				
+				 {% if not readOnly %}
+
 				<div >
 						<br /><button type="button"  id="zepto_config_btn" class="zepto_btn  {%if is_configured != false %} zm-dispNone {%endif%}">Save 
 							</button>
@@ -74,6 +80,7 @@
                 To modify email configuration,                 
                 <input type="button" class="zmailbtn--flat zmailbtn--sm" purpose="reconfigure" value="click here.">
             </span>
+        {% endif %}
 			
 		
 		</form>

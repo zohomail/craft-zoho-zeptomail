@@ -16,6 +16,12 @@ class ZeptoMailController extends Controller
         $this->requirePostRequest();
         $this->requireAdmin();
 
+        $allowAdminChanges = Craft::$app->getConfig()->getGeneral()->allowAdminChanges;
+        if(!$allowAdminChanges) {
+            return $this->asJson(['result' => 'failure', 'message' => 'Operation not allowed']);
+        }
+
+
         $domain = Craft::$app->getRequest()->getBodyParam('domain');
         $fromEmail = Craft::$app->getRequest()->getBodyParam('from_address');
         $fromName = Craft::$app->getRequest()->getBodyParam('from_name');
